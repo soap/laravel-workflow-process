@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Soap\LaravelWorkflowProcess\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelWorkflowProcessCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-workflow-process';
 
     public $description = 'My command';
 
