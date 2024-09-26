@@ -2,7 +2,9 @@
 
 namespace Soap\LaravelWorkflowProcess;
 
+use Illuminate\Support\Facades\Event;
 use Soap\LaravelWorkflowProcess\Commands\LaravelWorkflowProcessCommand;
+use Soap\LaravelWorkflowProcess\Listeners\WorkflowGuardSubscriber;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -19,7 +21,11 @@ class LaravelWorkflowProcessServiceProvider extends PackageServiceProvider
             ->name('laravel-workflow-process')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laravel_workflow_process_table')
             ->hasCommand(LaravelWorkflowProcessCommand::class);
+    }
+
+    public function packageBooted()
+    {
+        Event::subscribe(WorkflowGuardSubscriber::class);
     }
 }
