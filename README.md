@@ -5,11 +5,11 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/soap/laravel-workflow-process/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/soap/laravel-workflow-process/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/soap/laravel-workflow-process.svg?style=flat-square)](https://packagist.org/packages/soap/laravel-workflow-process)
 
-Using [Zerodahero's Laravel Workflow (based on Symfony Workflow)](https://github.com/zerodahero/laravel-workflow) to handle state-transition workflow is great. However, coding transition guard in event is hard. This package provides a simple way, you can add Symfony Expression Language as a transition guard for each transition. This configuration must provided in transiton metadata using 'guard' as a key.
-This package subscribes for all workflows' transition guard events and uses provided Symfony Expression Language to allow to block the transition.
+Using [Zerodahero's Laravel Workflow (based on Symfony Workflow)](https://github.com/zerodahero/laravel-workflow) to handle state-transition workflow is great. However, coding transition guards in events is hard. This package provides a simple way; you can add Symfony Expression Language as a transition guard for each transition. This configuration must be provided in transition metadata using the 'guard' key.
+The package subscribes for all workflows' transition guard events and uses the provided Symfony Expression Language to allow or block the transition.
 
 ## Support me
-Any recommendation, pull request are welcome. It is great if you sponsor me if you found my work is valuable.
+Any recommendation or pull request is welcome. It is great if you sponsor me if you find my work valuable.
 
 ## Installation
 
