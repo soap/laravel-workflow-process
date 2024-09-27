@@ -87,7 +87,7 @@ Currenty these variables/objects were injected into Symfony Expression Language.
 So you can call any method on the injected object.
 
 ## Todo
-I have a plan to prover document role for user. For example, some users may be assign as "reviewer" or "approver" for Eloquent model. So we can use something like subject.hasActorRole('reviewer') or subject.canBeReviewedBy(user). Any suggestion is welcome.
+I have a plan to provide document role for user. For example, some users may be assign as "reviewer" or "approver" for Eloquent model. So we can use something like subject.hasActorRole('reviewer') or subject.canBeReviewedBy(user). Any suggestion is welcome.
 
 ## Testing
 
