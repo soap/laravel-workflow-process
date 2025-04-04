@@ -8,6 +8,10 @@
 Using [Zerodahero's Laravel Workflow (based on Symfony Workflow)](https://github.com/zerodahero/laravel-workflow) to handle state-transition workflow is great. However, coding transition guards in events is hard. This package provides a simple way; you can add Symfony Expression Language as a transition guard for each transition. This configuration must be provided in transition metadata using the 'guard' key.
 The package subscribes for all workflows' transition guard events and uses the provided Symfony Expression Language to allow or block the transition.
 
+| Laravel vesion | Package version |
+| ---------- | --- |
+| 10, 11, 12 | 1.x |
+
 ## Support me
 Any recommendation or pull request is welcome. It is great if you sponsor me if you find my work valuable.
 
