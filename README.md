@@ -104,6 +104,11 @@ Currenty these variables/objects were injected into Symfony Expression Language.
 
 So you can call any method on the injected object.
 
+## Add your own guard functions
+You can add your own guard function in two way. The first one is inline in configuration file. The second way is define your GuardFunction class by implement GuardFunctionInterface and point to it in the configuration. You can see example in the provided configuration file.
+
+You can also overide the GuardEvaluator class in Application Service Provider with your own class.
+
 ## Todo
 I have a plan to provide document role for user. For example, some users may be assign as "reviewer" or "approver" for Eloquent model. So we can use something like subject.hasActorRole('reviewer') or subject.canBeReviewedBy(user). Any suggestion is welcome.
 
