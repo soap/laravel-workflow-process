@@ -33,7 +33,7 @@ return [
 ```
 
 ## Usage
-Task that you have to do is providing guard configuration like the following example. This is in laravel-workflow 's configuration file (config/workflow.php). If you want to store workflow configuration in database, please visis [my Laravel Workflow Loader package](https://github.com/soap/laravel-workflow-loader).
+Task that you have to do is providing guard configuration like the following example. This is in laravel-workflow 's configuration file (config/workflow.php). If you want to store workflow configuration in database, please visit [my Laravel Workflow Loader package](https://github.com/soap/laravel-workflow-loader).
 
 ```php
 // file config/workflow.php
