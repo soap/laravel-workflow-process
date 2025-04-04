@@ -24,6 +24,13 @@ class LaravelWorkflowProcessServiceProvider extends PackageServiceProvider
             ->hasCommand(LaravelWorkflowProcessCommand::class);
     }
 
+    public function registeringPackage()
+    {
+        $this->app->singleton(GuardEvaluator::class, function ($app) {
+            return new GuardEvaluator(new \Symfony\Component\ExpressionLanguage\ExpressionLanguage);
+        });
+    }
+
     public function packageBooted()
     {
         Event::subscribe(WorkflowGuardSubscriber::class);

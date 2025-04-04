@@ -2,11 +2,26 @@
 
 namespace Soap\LaravelWorkflowProcess\Listeners;
 
-use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Soap\LaravelWorkflowProcess\GuardEvaluator;
 use ZeroDaHero\LaravelWorkflow\Events\GuardEvent;
 
 class WorkflowGuardSubscriber
 {
+    /**
+     * The guard evaluator instance.
+     *
+     * @var GuardEvaluator
+     */
+    protected $guardEvaluator;
+
+    /**
+     * Create a new subscriber instance.
+     */
+    public function __construct(GuardEvaluator $guardEvaluator)
+    {
+        $this->guardEvaluator = $guardEvaluator;
+    }
+
     /**
      * Handle the event.
      */
@@ -15,16 +30,27 @@ class WorkflowGuardSubscriber
         // This is a call by using event proxy to Symfony GuardEvent
         $subject = $event->getSubject();
         $transition = $event->getTransition();
+
         $workflow = $event->getWorkflow();
         $metaData = $workflow->getMetadataStore()->getTransitionMetadata($transition);
+
         if (isset($metaData['guard'])) {
-            $guard = $metaData['guard'];
-            $expressionLanguage = new ExpressionLanguage;
-            $result = $expressionLanguage->evaluate($guard, [
-                'authenticated' => auth()->check(),
-                'subject' => $subject,
-                'user' => auth()->user(),
-            ]);
+            $guardExpression = $metaData['guard'];
+            // Prepare variables to pass to the evaluator.
+            // You can pass the workflow subject, user, or any other required objects.
+            $variables = [
+                'subject' => $event->getSubject(),
+            ];
+
+            // Optionally include the authenticated user.
+            if (auth()->check()) {
+                $variables['user'] = auth()->user();
+            }
+
+            // Evaluate the guard expression using the GuardEvaluator.
+            $result = $this->guardEvaluator->evaluate($guardExpression, $variables);
+
+            // If the expression evaluates to false, block the transition.
             if (! $result) {
                 $event->setBlocked(true, 'Guard blocked');
             }
