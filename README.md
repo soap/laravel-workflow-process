@@ -22,7 +22,7 @@ composer require soap/laravel-workflow-process
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-workflow-process-config"
+php artisan vendor:publish --tag="workflow-process-config"
 ```
 
 This is the contents of the published config file:
