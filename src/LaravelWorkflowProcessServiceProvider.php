@@ -31,7 +31,7 @@ class LaravelWorkflowProcessServiceProvider extends PackageServiceProvider
         });
 
         $this->app->singleton(WorkflowProcess::class, function ($app) {
-            return new WorkflowProcess();
+            return new WorkflowProcess;
         });
 
         $this->app->alias(WorkflowProcess::class, 'workflow-process');
