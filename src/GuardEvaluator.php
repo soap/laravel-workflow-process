@@ -17,7 +17,7 @@ class GuardEvaluator
 
     protected function registerCustomFunctions()
     {
-        $customFunctions = config('workflow.custom_functions', []);
+        $customFunctions = config('workflow-process.custom_functions', []);
 
         foreach ($customFunctions as $name => $definition) {
             if (is_string($definition) && class_exists($definition)) {
