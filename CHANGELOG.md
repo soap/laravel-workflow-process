@@ -2,6 +2,33 @@
 
 All notable changes to `laravel-workflow-process` will be documented in this file.
 
+## v1.0.3 - 2025-04-05
+
+### What's Changed
+
+* Fix Facade namespace error by @soap in https://github.com/soap/laravel-workflow-process/pull/10
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.2...v1.0.3
+
+## v1.0.2 - 2025-04-05
+
+### What's Changed
+
+* authenticated is core variable now, with some customization by @soap in https://github.com/soap/laravel-workflow-process/pull/9
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.1...v1.0.2
+
+## v1.0.1 - 2025-04-05
+
+### What's Changed
+
+* Develop by @soap in https://github.com/soap/laravel-workflow-process/pull/5
+* Develop by @soap in https://github.com/soap/laravel-workflow-process/pull/6
+* Update README.md by @soap in https://github.com/soap/laravel-workflow-process/pull/7
+* Bug fixed: wrong configuration file loading by @soap in https://github.com/soap/laravel-workflow-process/pull/8
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.0...v1.0.1
+
 ## v1.0.0 - 2025-04-04
 
 ### Highlight
