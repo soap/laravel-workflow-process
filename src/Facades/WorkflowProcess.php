@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Soap\LaravelWorkflowProcess\WorkflowProcess
  */
-class LaravelWorkflowProcess extends Facade
+class WorkflowProcess extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
