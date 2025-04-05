@@ -12,16 +12,6 @@ return [
         //     'evaluator' => function (array $variables) { return true; },
         // ],
 
-        // 'authenicated' => \Soap\LaravelWorkflowProcess\GuardFunctions\Authenticated::class,
-
-        'authenticated' => [
-            'compiler' => function ($guard = 'web') {
-                return sprintf('authenticated("%s")', $guard);
-            },
-            'evaluator' => function (array $variables, $guard = 'web') {
-                // This allows checking a specific guard (e.g., 'web', 'api', etc.)
-                return auth()->guard($guard)->check();
-            },
-        ],
+        // 'isAdmin' => \Soap\LaravelWorkflowProcess\GuardFunctions\AdminGuardFunction::class,
     ],
 ];
