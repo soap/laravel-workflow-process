@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Mockery;
+// use Mockery;
 use Soap\LaravelWorkflowProcess\GuardFunctions\Authenticated;
 
 afterEach(function () {
     // Ensure that all mock expectations are met and clean up
-    Mockery::close();
+    \Mockery::close();
 });
 
 test('compile returns authenticated("web") when no guard argument is provided', function () {

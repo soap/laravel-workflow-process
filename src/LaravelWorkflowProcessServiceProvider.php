@@ -29,6 +29,12 @@ class LaravelWorkflowProcessServiceProvider extends PackageServiceProvider
         $this->app->singleton(GuardEvaluator::class, function ($app) {
             return new GuardEvaluator(new \Symfony\Component\ExpressionLanguage\ExpressionLanguage);
         });
+
+        $this->app->singleton(WorkflowProcess::class, function ($app) {
+            return new WorkflowProcess($app[GuardEvaluator::class]);
+        });
+
+        $this->app->alias(WorkflowProcess::class, 'workflow-process');
     }
 
     public function packageBooted()

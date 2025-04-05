@@ -41,10 +41,16 @@ class WorkflowGuardSubscriber
             $variables = [
                 'subject' => $event->getSubject(),
             ];
+            $workflowProcess = app('workflow-process');
+
+            $authenticated = $workflowProcess->getAuthenticated();
+            $user = $workflowProcess->getUser();
+
+            $variables['authenticated'] = $authenticated;
 
             // Optionally include the authenticated user.
-            if (auth()->check()) {
-                $variables['user'] = auth()->user();
+            if ($authenticated) {
+                $variables['user'] = $workflowProcess->getUser();
             }
 
             // Evaluate the guard expression using the GuardEvaluator.
