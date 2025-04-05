@@ -41,28 +41,13 @@ class WorkflowProcess
     public function getUser()
     {
         $guards = config($this->configFile.'.authentication.guards', ['web']);
-        $logic = config($this->configFile.'.authentication.logic', 'or');
+        $user = null;
 
-        if ($logic === 'and') {
-            // The user is considered authenticated only if all guards return true.
-            $user = null;
-
-            foreach ($guards as $guard) {
-                if (auth()->guard($guard)->check()) {
-                    $user = auth()->guard($guard)->user();
-                    break;
-                }
+        foreach ($guards as $guard) {
+            if (auth()->guard($guard)->check()) {
+                $user = auth()->guard($guard)->user();
+                break;
             }
-        } elseif ($logic === 'or') {
-            $user = null;
-            foreach ($guards as $guard) {
-                if (auth()->guard($guard)->check()) {
-                    $user = auth()->guard($guard)->user();
-                    break;
-                }
-            }
-        } else {
-            throw new \InvalidArgumentException('Invalid authentication logic. Use "and" or "or".');
         }
 
         return $user;

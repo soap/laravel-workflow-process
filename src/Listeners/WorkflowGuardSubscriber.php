@@ -38,20 +38,13 @@ class WorkflowGuardSubscriber
             $guardExpression = $metaData['guard'];
             // Prepare variables to pass to the evaluator.
             // You can pass the workflow subject, user, or any other required objects.
+
+            $workflowProcess = app('workflow-process');
             $variables = [
                 'subject' => $event->getSubject(),
+                'authenticated' => $workflowProcess->getAuthenticated(),
+                'user' => $workflowProcess->getUser(),
             ];
-            $workflowProcess = app('workflow-process');
-
-            $authenticated = $workflowProcess->getAuthenticated();
-            $user = $workflowProcess->getUser();
-
-            $variables['authenticated'] = $authenticated;
-
-            // Optionally include the authenticated user.
-            if ($authenticated) {
-                $variables['user'] = $workflowProcess->getUser();
-            }
 
             // Evaluate the guard expression using the GuardEvaluator.
             $result = $this->guardEvaluator->evaluate($guardExpression, $variables);
