@@ -7,7 +7,7 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 it('evaluates a custom closure guard function correctly', function () {
     // Set a test configuration for custom guard functions.
     // Here we define a function named "checkFlag" that returns the value of a 'flag' variable.
-    config()->set('workflow.custom_functions', [
+    config()->set('workflow-process.custom_functions', [
         'checkFlag' => [
             'compiler' => function () {
                 // The compiler returns a placeholder expression.
@@ -35,7 +35,7 @@ it('evaluates a custom closure guard function correctly', function () {
 
 it('evaluates a custom guard function defined as a class correctly', function () {
     // Set the configuration so that the custom function points to our evaluator class.
-    config()->set('workflow.custom_functions', [
+    config()->set('workflow-process.custom_functions', [
         'checkFlag' => CheckFlagGuardFunction::class,
     ]);
 
