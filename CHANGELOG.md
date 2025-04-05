@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-workflow-process` will be documented in this file.
 
+## v1.0.4 - 2025-04-05
+
+### What's Changed
+
+* Develop by @soap in https://github.com/soap/laravel-workflow-process/pull/11
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.3...v1.0.4
+
 ## v1.0.3 - 2025-04-05
 
 ### What's Changed
