@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-workflow-process` will be documented in this file.
 
+## v1.0.2 - 2025-04-05
+
+### What's Changed
+
+* authenticated is core variable now, with some customization by @soap in https://github.com/soap/laravel-workflow-process/pull/9
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.1...v1.0.2
+
 ## v1.0.1 - 2025-04-05
 
 ### What's Changed
