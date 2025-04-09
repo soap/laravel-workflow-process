@@ -9,8 +9,8 @@ Using [Zerodahero's Laravel Workflow (based on Symfony Workflow)](https://github
 The package subscribes for all workflows' transition guard events and uses the provided Symfony Expression Language to allow or block the transition.
 
 | Laravel vesion | Package version |
-| ---------- | --- |
-| 10, 11, 12 | 1.x |
+| ---------------- | ------------- |
+| 10.x, 11.x, 12.x | 1.x |
 
 ## Support me
 Any recommendation or pull request is welcome. It is great if you sponsor me if you find my work valuable.
@@ -104,9 +104,9 @@ Currenty these variables/objects were injected into Symfony Expression Language.
 
 - "subject" is the Eloquent model which is subject of a workflow
 - "user" is authenticated user.
-- "authenticated" boolean, true if user was authenticated.
+- "authenticated" boolean, true if user was authenticated. You can 
 
-So you can call any method on the injected object.
+So you can call any method on the injected object. So you can assign guard as authenticated and subject.isPaid(), where your model has method isPaid().
 
 ## Add your own guard functions
 You can add your own guard function in two way. The first one is inline in configuration file. The second way is define your GuardFunction class by implement GuardFunctionInterface and point to it in the configuration. You can see example in the provided configuration file.
