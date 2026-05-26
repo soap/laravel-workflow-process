@@ -2,6 +2,23 @@
 
 All notable changes to `laravel-workflow-process` will be documented in this file.
 
+## Improve performance and security - 2026-05-26
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/12
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/14
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/15
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/13
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/16
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/17
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/18
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.1.0 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/21
+* Bump ramsey/composer-install from 3 to 4 by @dependabot[bot] in https://github.com/soap/laravel-workflow-process/pull/19
+* Improve performance and add test cases with styling fixes by @soap in https://github.com/soap/laravel-workflow-process/pull/22
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.4...v1.0.5
+
 ## v1.0.4 - 2025-04-05
 
 ### What's Changed
