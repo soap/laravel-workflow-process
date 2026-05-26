@@ -6,7 +6,7 @@ use Soap\LaravelWorkflowProcess\GuardFunctions\Authenticated;
 
 afterEach(function () {
     // Ensure that all mock expectations are met and clean up
-    \Mockery::close();
+    Mockery::close();
 });
 
 test('compile returns PHP auth check code with default web guard when no argument provided', function () {

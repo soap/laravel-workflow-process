@@ -35,7 +35,7 @@ it('evaluates a custom closure guard function correctly', function () {
 
 it('throws InvalidArgumentException when class does not implement GuardFunctionInterface', function () {
     config()->set('workflow-process.custom_functions', [
-        'badFunction' => \stdClass::class,
+        'badFunction' => stdClass::class,
     ]);
 
     $expressionLanguage = new ExpressionLanguage;
