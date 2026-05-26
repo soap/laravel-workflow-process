@@ -32,7 +32,7 @@ jobs:
             carbon: ^3.0
           - laravel: 11.*
             testbench: 9.*
-            carbon: ^2.63
+            carbon: ^3.0
           - laravel: 10.*
             testbench: 8.*
             carbon: ^2.63
