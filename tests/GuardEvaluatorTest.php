@@ -33,6 +33,31 @@ it('evaluates a custom closure guard function correctly', function () {
     expect($resultFalse)->toBeFalse();
 });
 
+it('throws InvalidArgumentException when class does not implement GuardFunctionInterface', function () {
+    config()->set('workflow-process.custom_functions', [
+        'badFunction' => stdClass::class,
+    ]);
+
+    $expressionLanguage = new ExpressionLanguage;
+
+    expect(fn () => new GuardEvaluator($expressionLanguage))
+        ->toThrow(InvalidArgumentException::class, 'must implement GuardFunctionInterface');
+});
+
+it('silently skips definitions that are neither a string nor an array', function () {
+    config()->set('workflow-process.custom_functions', [
+        'skipped' => 42, // invalid — neither string nor array
+    ]);
+
+    $expressionLanguage = new ExpressionLanguage;
+
+    // Should not throw; the invalid entry is silently ignored
+    $guardEvaluator = new GuardEvaluator($expressionLanguage);
+
+    // Basic evaluation still works after skipping
+    expect($guardEvaluator->evaluate('1 + 1'))->toBe(2);
+});
+
 it('evaluates a custom guard function defined as a class correctly', function () {
     // Set the configuration so that the custom function points to our evaluator class.
     config()->set('workflow-process.custom_functions', [

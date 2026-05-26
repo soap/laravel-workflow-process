@@ -8,15 +8,15 @@ class Authenticated implements GuardFunctionInterface
 {
     public function compile(...$args): string
     {
-        // Compiler returns a placeholder.
-        $guard = $args[0] ?? 'web';
+        // $args[0] is the pre-compiled guard string passed by Symfony ExpressionLanguage
+        // e.g. for authenticated("web"), Symfony passes '"web"' (a PHP string literal)
+        $compiledGuard = $args[0] ?? '"web"';
 
-        return sprintf('authenticated("%s")', $guard);
+        return sprintf('auth()->guard(%s)->check()', $compiledGuard);
     }
 
-    public function evaluate(array $variables, ...$args)
+    public function evaluate(array $_variables, ...$args): bool
     {
-        // Get the guard name, defaulting to 'web'
         $guard = $args[0] ?? 'web';
 
         return auth()->guard($guard)->check();

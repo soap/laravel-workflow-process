@@ -7,6 +7,7 @@ use Soap\LaravelWorkflowProcess\Commands\LaravelWorkflowProcessCommand;
 use Soap\LaravelWorkflowProcess\Listeners\WorkflowGuardSubscriber;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class LaravelWorkflowProcessServiceProvider extends PackageServiceProvider
 {
@@ -27,7 +28,7 @@ class LaravelWorkflowProcessServiceProvider extends PackageServiceProvider
     public function registeringPackage()
     {
         $this->app->singleton(GuardEvaluator::class, function ($app) {
-            return new GuardEvaluator(new \Symfony\Component\ExpressionLanguage\ExpressionLanguage);
+            return new GuardEvaluator(new ExpressionLanguage);
         });
 
         $this->app->singleton(WorkflowProcess::class, function ($app) {

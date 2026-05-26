@@ -3,58 +3,39 @@
 namespace Soap\LaravelWorkflowProcess\Listeners;
 
 use Soap\LaravelWorkflowProcess\GuardEvaluator;
+use Soap\LaravelWorkflowProcess\WorkflowProcess;
 use ZeroDaHero\LaravelWorkflow\Events\GuardEvent;
 
 class WorkflowGuardSubscriber
 {
-    /**
-     * The guard evaluator instance.
-     *
-     * @var GuardEvaluator
-     */
-    protected $guardEvaluator;
+    protected GuardEvaluator $guardEvaluator;
 
-    /**
-     * Create a new subscriber instance.
-     */
-    public function __construct(GuardEvaluator $guardEvaluator)
+    protected WorkflowProcess $workflowProcess;
+
+    public function __construct(GuardEvaluator $guardEvaluator, WorkflowProcess $workflowProcess)
     {
         $this->guardEvaluator = $guardEvaluator;
+        $this->workflowProcess = $workflowProcess;
     }
 
-    /**
-     * Handle the event.
-     */
     public function handleOnGuard(GuardEvent $event): void
     {
-        // This is a call by using event proxy to Symfony GuardEvent
-        $subject = $event->getSubject();
         $transition = $event->getTransition();
-
-        $workflow = $event->getWorkflow();
-        $metaData = $workflow->getMetadataStore()->getTransitionMetadata($transition);
+        $metaData = $event->getWorkflow()->getMetadataStore()->getTransitionMetadata($transition);
 
         if (isset($metaData['guard'])) {
-            $guardExpression = $metaData['guard'];
-            // Prepare variables to pass to the evaluator.
-            // You can pass the workflow subject, user, or any other required objects.
-
-            $workflowProcess = app('workflow-process');
             $variables = [
                 'subject' => $event->getSubject(),
-                'authenticated' => $workflowProcess->getAuthenticated(),
-                'user' => $workflowProcess->getUser(),
+                'authenticated' => $this->workflowProcess->getAuthenticated(),
+                'user' => $this->workflowProcess->getUser(),
             ];
 
-            // Evaluate the guard expression using the GuardEvaluator.
-            $result = $this->guardEvaluator->evaluate($guardExpression, $variables);
+            $result = $this->guardEvaluator->evaluate($metaData['guard'], $variables);
 
-            // If the expression evaluates to false, block the transition.
             if (! $result) {
                 $event->setBlocked(true, 'Guard blocked');
             }
         }
-
     }
 
     public function subscribe($events): void

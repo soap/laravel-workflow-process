@@ -12,9 +12,8 @@ class CheckFlagGuardFunction implements GuardFunctionInterface
         return 'true';
     }
 
-    public function evaluate(array $variables, ...$args)
+    public function evaluate(array $variables, ...$args): mixed
     {
-        // Return the 'flag' value from the variables (or false if not set).
         return $variables['flag'] ?? false;
     }
 }

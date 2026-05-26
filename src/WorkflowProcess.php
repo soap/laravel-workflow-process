@@ -2,54 +2,50 @@
 
 namespace Soap\LaravelWorkflowProcess;
 
+use Illuminate\Contracts\Auth\Authenticatable;
+use InvalidArgumentException;
+
 class WorkflowProcess
 {
-    private $configFile = 'workflow-process';
+    private string $configFile = 'workflow-process';
 
     public function __construct() {}
 
-    public function getAuthenticated()
+    public function getAuthenticated(): bool
     {
         $guards = config($this->configFile.'.authentication.guards', ['web']);
         $logic = config($this->configFile.'.authentication.logic', 'or');
 
-        if ($logic === 'and') {
-            // The user is considered authenticated only if all guards return true.
-            $authenticated = true;
-
-            foreach ($guards as $guard) {
-                if (! auth()->guard($guard)->check()) {
-                    $authenticated = false;
-                    break;
-                }
-            }
-        } elseif ($logic === 'or') {
-            $authenticated = false;
-            foreach ($guards as $guard) {
-                if (auth()->guard($guard)->check()) {
-                    $authenticated = true;
-                    break;
-                }
-            }
-        } else {
-            throw new \InvalidArgumentException('Invalid authentication logic. Use "and" or "or".');
+        if ($logic !== 'and' && $logic !== 'or') {
+            throw new InvalidArgumentException('Invalid authentication logic. Use "and" or "or".');
         }
-
-        return $authenticated;
-    }
-
-    public function getUser()
-    {
-        $guards = config($this->configFile.'.authentication.guards', ['web']);
-        $user = null;
 
         foreach ($guards as $guard) {
-            if (auth()->guard($guard)->check()) {
-                $user = auth()->guard($guard)->user();
-                break;
+            $isAuthenticated = auth()->guard($guard)->check();
+
+            if ($logic === 'or' && $isAuthenticated) {
+                return true;
+            }
+
+            if ($logic === 'and' && ! $isAuthenticated) {
+                return false;
             }
         }
 
-        return $user;
+        return $logic === 'and';
+    }
+
+    public function getUser(): ?Authenticatable
+    {
+        $guards = config($this->configFile.'.authentication.guards', ['web']);
+
+        foreach ($guards as $guard) {
+            $user = auth()->guard($guard)->user();
+            if ($user !== null) {
+                return $user;
+            }
+        }
+
+        return null;
     }
 }
