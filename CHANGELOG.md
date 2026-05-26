@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-workflow-process` will be documented in this file.
 
+## Add more test cases - 2026-05-26
+
+### What's Changed
+
+* Fix test cases and Github actions by @soap in https://github.com/soap/laravel-workflow-process/pull/23
+
+**Full Changelog**: https://github.com/soap/laravel-workflow-process/compare/v1.0.5...v1.0.6
+
 ## Improve performance and security - 2026-05-26
 
 ### What's Changed
