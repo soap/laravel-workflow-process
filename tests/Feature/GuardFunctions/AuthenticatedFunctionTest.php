@@ -9,16 +9,18 @@ afterEach(function () {
     \Mockery::close();
 });
 
-test('compile returns authenticated("web") when no guard argument is provided', function () {
+test('compile returns PHP auth check code with default web guard when no argument provided', function () {
     $guardFunction = new Authenticated;
+    // No args: uses default '"web"' literal
     $compiled = $guardFunction->compile();
-    expect($compiled)->toBe('authenticated("web")');
+    expect($compiled)->toBe('auth()->guard("web")->check()');
 });
 
-test('compile returns authenticated("custom") when a custom guard is provided', function () {
+test('compile returns PHP auth check code for the given pre-compiled guard literal', function () {
     $guardFunction = new Authenticated;
-    $compiled = $guardFunction->compile('custom');
-    expect($compiled)->toBe('authenticated("custom")');
+    // Symfony passes pre-compiled PHP string literals (with surrounding quotes)
+    $compiled = $guardFunction->compile('"custom"');
+    expect($compiled)->toBe('auth()->guard("custom")->check()');
 });
 
 test('evaluate returns true when the default guard is authenticated', function () {

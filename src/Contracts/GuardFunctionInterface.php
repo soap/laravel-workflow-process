@@ -17,7 +17,6 @@ interface GuardFunctionInterface
      * Evaluate the function. Executed during the evaluation.
      *
      * @param  mixed  ...$args
-     * @return mixed
      */
-    public function evaluate(array $variables, ...$args);
+    public function evaluate(array $variables, ...$args): mixed;
 }
